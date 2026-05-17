@@ -50,20 +50,20 @@ pip install -r requirements.txt
 ### Run directly
 
 ```bash
-python app.py
+python markitdown-gui.py
 ```
 
 ### Run without a terminal window (Windows)
 
 ```bash
-pythonw app.py
+pythonw markitdown-gui.py
 ```
 
 ### Desktop shortcut (recommended)
 
 Create a shortcut pointing to:
 ```
-Target:    C:\Path\To\Python\pythonw.exe "C:\Path\To\markitdown-gui\app.py"
+Target:    C:\Path\To\Python\pythonw.exe "C:\Path\To\markitdown-gui\markitdown-gui.py"
 Start in:  C:\Path\To\markitdown-gui
 ```
 

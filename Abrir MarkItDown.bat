@@ -1,2 +1,2 @@
 @echo off
-python "%~dp0app.py"
+python "%~dp0markitdown-gui.py"
