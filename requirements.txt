@@ -1,0 +1,2 @@
+markitdown>=0.1.5
+tkinterdnd2>=0.4.3
