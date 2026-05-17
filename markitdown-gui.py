@@ -1,9 +1,15 @@
 import tkinter as tk
 from tkinter import filedialog, messagebox
 from tkinterdnd2 import DND_FILES, TkinterDnD
-from markitdown import MarkItDown
 import os
 import threading
+
+_markitdown_instance = None
+
+def _preload_markitdown():
+    global _markitdown_instance
+    from markitdown import MarkItDown
+    _markitdown_instance = MarkItDown()
 
 # ── palette ──────────────────────────────────────────────────────────────────
 BG        = "#1e1e2e"
@@ -39,6 +45,7 @@ class App(TkinterDnD.Tk):
 
         self._build_ui()
         self._center()
+        threading.Thread(target=_preload_markitdown, daemon=True).start()
 
     # ── layout ───────────────────────────────────────────────────────────────
 
@@ -243,7 +250,8 @@ class App(TkinterDnD.Tk):
                          args=(files, out), daemon=True).start()
 
     def _convert_batch(self, files: list[str], out_dir: str):
-        md = MarkItDown()
+        from markitdown import MarkItDown
+        md = _markitdown_instance or MarkItDown()
         ok = err = 0
         for path in files:
             name = os.path.splitext(os.path.basename(path))[0] + ".md"
